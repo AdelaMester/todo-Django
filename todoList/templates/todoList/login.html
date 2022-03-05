@@ -1,18 +1,19 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-    Log In
-{% endblock %}
+<title>
+    Login
+</title>
 
-{% block main %}
-    <form action="/login" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
-        </div>
-        <div class="form-group">
-            <input class="form-control" name="password" placeholder="Password" type="password">
-        </div>
-        <button class="btn btn-primary" type="submit">Log In</button>
-    </form>
-{% endblock %}
+<h1>Login</h1>
+<body>
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <input name="username" type="text"/>
+    <input name="password" type="password"/>
+    <input type="submit" value="Login"/>
+</form>
+
+</body>
+</html>
