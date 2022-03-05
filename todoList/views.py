@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from todoList.models import Users
 
+user_id = 0
 
 # Create your views here.
 def index(request):
@@ -45,7 +46,7 @@ def register(request):
         old_user = Users.objects.filter(username=existing_user)
 
         # if the username does not exist in the db, it will be inserted
-        global user_id = 0
+        global user_id
         if len(old_user) == 0:
             user = Users(user_id, existing_user, password)
             user_id += 1
