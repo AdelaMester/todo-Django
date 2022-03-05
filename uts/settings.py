@@ -26,7 +26,7 @@ SECRET_KEY = 'k8_lcdm*gq_(gic&w)ru3c-w#!xpaclh93ohc3b2zn90mazjz2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'todoapplicationdjango.herokuapp.com', '0.0.0.0','https://ide-b5b60eee18034667a09ed7a8cdf12337-8080.cs50.ws/']
+ALLOWED_HOSTS = ['127.0.0.1', 'todoapplicationdjango.herokuapp.com', 'ide-b5b60eee18034667a09ed7a8cdf12337-8080.cs50.ws/', '0.0.0.0']
 
 
 # Application definition
