@@ -22,24 +22,24 @@ def register(request):
     if request.method == 'POST':
 
         # Ensure username was submitted
-        if not request.form.get("username"):
+        if not request.POST["username"]:
             return HttpResponse("Must provide username", 400)
 
         # Ensure password was submitted
-        elif not request.form.get("password"):
+        elif not request.POST["password"]:
             return HttpResponse("Must provide password", 400)
 
         #Ensure field is not empty
-        elif not request.form.get("confirmation"):
+        elif not request.POST["confirmation"]:
             return HttpResponse("Must confirm password", 400)
 
         #Ensure password is matching
-        elif not (request.form.get("confirmation") == request.form.get("password")):
+        elif not (request.POST["confirmation"] == request.POST["password"]):
             return HttpResponse("Password is not matching", 400)
 
         #Ensure there is no duplicate for usename
-        existing_user=request.form.get("username")
-        password=request.form.get("password")
+        existing_user=request.POST["username"]
+        password=request.POST["password"]
         old_user = Users.objects.get(username = existing_user)
 
         # if the username does not exist in the db, it will be inserted
