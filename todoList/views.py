@@ -44,14 +44,14 @@ def register(request):
         existing_user=request.POST["username"]
         password=request.POST["password"]
         old_user = Users.objects.filter(username=existing_user)
-        print(len(old_user))
+
 
         # if the username does not exist in the db, it will be inserted
         global user_id
         if len(old_user) == 0:
-            user = Users(user_id, existing_user, password)
+            user = Users.objects.raw("INSERT INTO Users (user_id, username, hash_password) VALUES (%s, %s, %s)", [user_id, existing_user, password])
             user_id += 1
-            user.save()
+            print("insert done?")
         else:
             return HttpResponse("User name not available",400)
 
