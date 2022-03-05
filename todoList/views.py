@@ -41,7 +41,7 @@ def register(request):
         #Ensure there is no duplicate for usename
         existing_user=request.POST["username"]
         password=request.POST["password"]
-        old_user = Users.objects.get(username=existing_user)
+        old_user = Users.objects.filter(username=existing_user)
 
         # if the username does not exist in the db, it will be inserted
         if len(old_user) == 0:
