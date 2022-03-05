@@ -11,3 +11,7 @@ def index(request):
 def login(request):
     if request.method == 'GET':
         return render(request, "todoList/login.html")
+
+def register(request):
+    if request.method == 'GET':
+        return render(request, "todoList/register.html")
