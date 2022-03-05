@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+
 from todoList.models import Users
 
 
@@ -45,7 +46,8 @@ def register(request):
 
         # if the username does not exist in the db, it will be inserted
         if len(old_user) == 0:
-            user = Users(existing_user, generate_password_hash (password, method='pbkdf2:sha256', salt_length=8))
+            user = Users(existing_user, password)
+            user.save()
         else:
             return HttpResponse("User name not available",400)
 
