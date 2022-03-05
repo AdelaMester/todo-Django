@@ -54,7 +54,9 @@ def register(request):
         else:
             return HttpResponse("User name not available",400)
 
-        return render(request,"todoList/registered.html", user_name=existing_user)
+        return render(request,"todoList/registered.html", {
+            "user_name": existing_user
+        })
 
 
 
