@@ -1,1 +1,1 @@
-web: gunicorn uts.wsgi
+web: gunicorn uts.wsgi --log-file -
