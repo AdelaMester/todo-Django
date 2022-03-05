@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from . import models
 
 
 # Create your views here.
@@ -40,7 +41,7 @@ def register(request):
         #Ensure there is no duplicate for usename
         existing_user=request.POST["username"]
         password=request.POST["password"]
-        old_user = Users.objects.get(username = existing_user)
+        old_user = Users(username=existing_user)
 
         # if the username does not exist in the db, it will be inserted
         if len(old_user) == 0:
