@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from todoList.models import Users
 
+user_id = 0
 
 # Create your views here.
 def index(request):
@@ -46,7 +47,8 @@ def register(request):
 
         # if the username does not exist in the db, it will be inserted
         if len(old_user) == 0:
-            user = Users(existing_user, password)
+            user = Users(user_id, existing_user, password)
+            user_id += 1
             user.save()
         else:
             return HttpResponse("User name not available",400)
