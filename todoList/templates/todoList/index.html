@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "todoList/layout.html" %}
 
-<title>
-    ToDo List
-</title>
+{% block title %}
+    WELCOME!
+{% endblock %}
 
-<body>
-    <h1> Hello </h1>
-    <a href="https://todoapplicationdjango.herokuapp.com/register">Register here</a>
-    <a href="https://todoapplicationdjango.herokuapp.com/login">Login here</a>
-</body>
-</html>
+{% block main %}
+    <body>
+        <h1> Hello </h1>
+        <a href="https://todoapplicationdjango.herokuapp.com/register">Register here</a>
+        <a href="https://todoapplicationdjango.herokuapp.com/login">Login here</a>
+    </body>
+{% endblock %}
