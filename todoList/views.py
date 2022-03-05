@@ -44,6 +44,7 @@ def register(request):
         existing_user=request.POST["username"]
         password=request.POST["password"]
         old_user = Users.objects.filter(username=existing_user)
+        print(len(old_user))
 
         # if the username does not exist in the db, it will be inserted
         global user_id
