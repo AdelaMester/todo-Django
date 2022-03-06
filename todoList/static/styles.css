@@ -45,3 +45,27 @@ main img
     /* Constrain images on small screens */
     max-width: 100%;
 }
+
+parent
+{
+    order: 2px solid #DFA612;
+    color: black;
+    display: flex;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+tasks display
+{
+    flex-basis: 100%;
+    flex-grow: 1;
+    padding: 10px;
+}
+
+dropzone
+{
+    background-color: #6DB65B;
+    flex-basis: 100%;
+    flex-grow: 1;
+    padding: 10px;
+}

@@ -15,6 +15,10 @@ def index(request):
     return render(request, "todoList/index.html")
 
 def login(request):
+
+    """ Login user """
+
+
     # Forget any user_id
     # session.clear()
 
@@ -31,14 +35,11 @@ def login(request):
             return HttpResponse("must provide password", 403)
 
         # Query database for username
-        #with connection.cursor() as cursor:
-        #    users = cursor.execute("SELECT * from todoList_users WHERE username = %s", [request.POST["username"]])
         users = Users.objects.get(username=request.POST["username"])
         print(users)
 
         # Ensure username exists and password is correct
-        # if len(rows) != 1 -> as in to check there is only one user with that username
-        #if the hashse are not equal, that means the password is not correct for that user
+        # If the hashse are not equal, that means the password is not correct for that user
         if not check_password(request.POST["password"],users.hash_password):
             return HttpResponse("Invalid username and/or password", 403)
 
@@ -49,10 +50,6 @@ def login(request):
         # Redirect user to home page
         return redirect("/")
 
-        #rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
-        #with connection.cursor() as cursor:
-        #        cursor.execute("INSERT INTO todoList_users (username, hash_password) VALUES (%s, %s)", [existing_user, make_password(password)])
-        #else:
 
 
 def register(request):
@@ -99,11 +96,37 @@ def register(request):
 
 
 def logout(request):
+
+    """ Logout user """
+
+
     # Forget any user_id
     print(request.session["user_id"])
     request.session.clear()
 
     if request.method == 'GET':
         return render(request, "todoList/login.html")
+
+def tasks(request):
+
+    """ Create tasks """
+
+
+    # Render the tasks template
+    if request.method == 'GET':
+        with connection.cursor() as cursor:
+            display_tasks = cursor.execute("SELECT * FROM todoList_tasks").fetchall()
+
+        return render(request, "todoList/tasks.html", {
+            "display_tasks": display_tasks
+        })
+
+
+
+    if request.method == 'POST':
+        description =request.POST["task"]
+        with connection.cursor() as cursor:
+            cursor.execute("INSERT INTO todoList_tasks (description, completed) VALUES (%s, %s)", [description, 'False'])
+        return HttpResponse("Task saved")
 
 

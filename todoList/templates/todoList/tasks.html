@@ -1,0 +1,25 @@
+{% extends "todoList/layout.html" %}
+
+{% block title %}
+    Tasks
+{% endblock %}
+
+{% block main %}
+
+    <form action="{% url 'tasks' %}" method="post">
+        {% csrf_token %}
+        <input name="task" placeholder="Task" type="text"/>
+        <button class="btn btn-primary" type="submit">Submit task</button>
+    </form>
+
+    <div class="parent">
+      <h1>Tasks</h1>
+      <div class="tasks display">
+        To-do
+        {% for task in display_tasks %}
+            <li> {{ task.1 }} </li>
+            <!--<div id= {{ task.0 }} class="task" draggable="true" ondragstart="onDragStart(event);">{{ task.1 }}</div> -->
+        {% endfor %}
+      <div class="dropzone" ondragover="onDragOver(event);" ondrop="onDrop(event);">Done</div>
+    </div>
+{% endblock %}
