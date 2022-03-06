@@ -46,7 +46,7 @@ main img
     max-width: 100%;
 }
 
-parent
+.parent
 {
     order: 2px solid #DFA612;
     color: black;
@@ -55,17 +55,26 @@ parent
     font-weight: bold;
 }
 
-tasks display
+.tasks-display
 {
     flex-basis: 100%;
     flex-grow: 1;
     padding: 10px;
 }
 
-dropzone
+.dropzone
 {
     background-color: #6DB65B;
     flex-basis: 100%;
     flex-grow: 1;
+    padding: 10px;
+}
+
+.task
+{
+    background-color: #4AAE9B;
+    font-weight: normal;
+    margin-bottom: 10px;
+    margin-top: 10px;
     padding: 10px;
 }

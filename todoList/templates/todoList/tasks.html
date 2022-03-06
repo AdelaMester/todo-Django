@@ -13,13 +13,37 @@
     </form>
 
     <div class="parent">
-      <h1>Tasks</h1>
-      <div class="tasks display">
+      <div class="tasks-display">
         To-do
         {% for task in display_tasks %}
-            <li> {{ task.1 }} </li>
-            <!--<div id= {{ task.0 }} class="task" draggable="true" ondragstart="onDragStart(event);">{{ task.1 }}</div> -->
+            <li class = "task" draggable="true" ondragstart="onDragStart(event);" id="{{ task.0 }}"> {{ task.1 }} </li>
         {% endfor %}
-      <div class="dropzone" ondragover="onDragOver(event);" ondrop="onDrop(event);">Done</div>
+      <div class="dropzone" ondragover="onDragOver(event);" ondrop="onDrop(event);">Completed</div>
     </div>
+    <script>
+        function onDragStart(event) {
+            event
+            .dataTransfer
+            .setData("text", event.target.id);
+        }
+
+        function onDragOver(event) {
+            event.preventDefault();
+        }
+
+        function onDrop(event) {
+            const id = event
+            .dataTransfer
+            .getData('text');
+
+            const draggableTask = document.getElementById(id);
+            const dropzone = event.target;
+            dropzone.appendChild(draggableTask);
+
+            event
+                .dataTransfer
+                .clearData();
+        }
+
+    </script>
 {% endblock %}
