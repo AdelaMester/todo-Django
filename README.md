@@ -13,4 +13,4 @@ A ToDo app written in Python-Django, styled with css, and JavaScript for fronten
 ```python manage.py runserver```
 
 ## App deployed with Heroku
-[API link to Heroku](https://todoapplicationdjango.herokuapp.com/)
+[APP link to Heroku](https://todoapplicationdjango.herokuapp.com/)
