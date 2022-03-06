@@ -8,5 +8,6 @@ class Users(models.Model):
 
 class Tasks(models.Model):
     task_id = models.AutoField(primary_key=True)
+    user_id = models.IntegerField()
     description = models.CharField(max_length=100)
     completed = models.CharField(max_length=10)

@@ -40,10 +40,20 @@
             const dropzone = event.target;
             dropzone.appendChild(draggableTask);
 
+            // Make a request to the controller to update the task status in the database
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/update_task?id="+id);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(null);
+
             event
                 .dataTransfer
                 .clearData();
+
+
+
         }
+
 
     </script>
 {% endblock %}

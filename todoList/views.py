@@ -111,22 +111,34 @@ def tasks(request):
 
     """ Create tasks """
 
-
     # Render the tasks template
     if request.method == 'GET':
+        # Query the database to display all tasks
         with connection.cursor() as cursor:
-            display_tasks = cursor.execute("SELECT * FROM todoList_tasks").fetchall()
+            display_tasks = cursor.execute("SELECT * FROM todoList_tasks WHERE completed='False' AND user_id = (%s)", [request.session["user_id"]]).fetchall()
 
         return render(request, "todoList/tasks.html", {
             "display_tasks": display_tasks
         })
 
 
-
+    # Query database to update tasks table
     if request.method == 'POST':
-        description =request.POST["task"]
+        # when the task is added in the form it is saved in the 'description' variable
+        description = request.POST["task"]
+        # Insert into database the new task
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO todoList_tasks (description, completed) VALUES (%s, %s)", [description, 'False'])
-        return HttpResponse("Task saved")
+            cursor.execute("INSERT INTO todoList_tasks (description, completed, user_id) VALUES (%s, %s, %s)", [description, 'False', request.session["user_id"]])
+        return HttpResponseRedirect("/tasks")
+
+def update_task(request):
+
+    # update task_id in the database as completed
+    if request.method == 'GET':
+        read_id = request.GET.get('id')
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE todoList_tasks SET completed = (%s) WHERE task_id = (%s) AND user_id = (%s)", ["True", read_id, request.session["user_id"]])
+
+        return HttpResponse("Updated task")
 
 
