@@ -18,10 +18,6 @@ def login(request):
 
     """ Login user """
 
-
-    # Forget any user_id
-    # session.clear()
-
     if request.method == 'GET':
         return render(request, "todoList/login.html")
 
@@ -98,7 +94,6 @@ def register(request):
 def logout(request):
 
     """ Logout user """
-
 
     # Forget any user_id
     print(request.session["user_id"])
